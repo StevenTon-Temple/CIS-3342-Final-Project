@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\ProjectFive.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Hunter\\Desktop\\3342\\ProjectFive\\ProjectFive\\wwwroot\\Templates\\EmailTemplate\\ForgotEmail.html",
+      "PackagePath": "staticwebassets\\Templates\\EmailTemplate\\ForgotEmail.html"
+    },
+    {
       "Id": "C:\\Users\\Hunter\\Desktop\\3342\\ProjectFive\\ProjectFive\\wwwroot\\css\\forgot.css",
       "PackagePath": "staticwebassets\\css\\forgot.css"
     },
@@ -15,6 +19,10 @@
     {
       "Id": "C:\\Users\\Hunter\\Desktop\\3342\\ProjectFive\\ProjectFive\\wwwroot\\css\\register.css",
       "PackagePath": "staticwebassets\\css\\register.css"
+    },
+    {
+      "Id": "C:\\Users\\Hunter\\Desktop\\3342\\ProjectFive\\ProjectFive\\wwwroot\\css\\restaurant.css",
+      "PackagePath": "staticwebassets\\css\\restaurant.css"
     },
     {
       "Id": "C:\\Users\\Hunter\\Desktop\\3342\\ProjectFive\\ProjectFive\\wwwroot\\css\\site.css",

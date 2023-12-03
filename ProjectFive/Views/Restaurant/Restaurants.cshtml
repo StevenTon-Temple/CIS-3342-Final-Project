@@ -1,0 +1,107 @@
+﻿@model IEnumerable<ProjectFive.Models.RestaurantModel>
+
+@{
+    ViewData["Title"] = "All Restaurants";
+}
+
+<head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/restaurant.css" />
+
+    <style>
+ 
+        table {
+            text-align: center;
+        }
+        th, td{
+            justify-content:center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="#">DishDetective</a></div>
+            <ul class="links">
+                <li><a href="home">Home</a></li>
+                <li><a href="restaurant">Restaurants</a></li>
+                <li><a href="reservation">Reservations</a></li>
+                <li><a href="review">Reviews</a></li>
+            </ul>
+            <a href="#" class="action_btn">Login</a>
+            <div class="toggle_btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+
+        <div class="dropdown_menu">
+            <li><a href="home">Home</a></li>
+            <li><a href="restaurant">Restaurants</a></li>
+            <li><a href="reservation">Reservations</a></li>
+            <li><a href="review">Reviews</a></li>
+            <li><a href="#" class="action_btn">Login</a></li>
+        </div>
+    </header>
+    <br/>
+    <br/>
+    <div class="wrapper">
+        <form method="post">
+            <h1 style="color:#fff;">All Restaurants</h1>
+            <div class="rtable">
+                <table class="table table-dark table-striped table-bordered table-sm">
+                    <thead class="table-light">
+                        <tr>
+                            <th></th>
+                            <th style="width:20%;">Image</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Rating</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var d in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <input type="radio" name="selectedRestaurant" value="@d.ID" />
+                                </td>
+                                <td><img src=@d.Image width="150" height="100" /></td>
+                                <td>@d.Name</td>
+                                <td>@d.Description</td>
+                                <td>@d.Rating</td>
+                                <td>@d.Category</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-primary">More Details</button>
+            </div>
+            <br />
+            <div class="row">
+                <button type="button" class="btn btn-primary">Make A Reservation</button>
+            </div>
+        </form>
+    </div>
+
+
+    <script>
+        const toggleBtn = document.querySelector('.toggle_btn')
+        const toggleBtnIcon = document.querySelector('.toggle_btn i')
+        const dropDownMenu = document.querySelector('.dropdown_menu')
+
+        toggleBtn.onclick = function () {
+            dropDownMenu.classList.toggle('open')
+            const isOpen = dropDownMenu.classList.contains('open')
+
+            toggleBtnIcon.classList = isOpen
+                ? 'fa-solid fa-xmark'
+                : 'fa-solid fa-bars'
+        }
+    </script>
+</body>

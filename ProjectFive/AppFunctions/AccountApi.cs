@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using ProjectFive.Models;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Principal;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace ProjectFive.AppFunctions
 {
@@ -14,7 +16,7 @@ namespace ProjectFive.AppFunctions
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"https://cis-iis2.temple.edu/Fall2023/CIS3342_tui95333/Project4WS/Account/ListAccount?email={username}&password={password}"),
+                RequestUri = new Uri($"http://localhost:5283/Account/ListAccount?username={username}&password={password}"),
                 Headers =
                 {
                     { "Accept", "application/json" }
@@ -39,7 +41,7 @@ namespace ProjectFive.AppFunctions
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Post,
-                RequestUri = new Uri($"https://cis-iis2.temple.edu/Fall2023/CIS3342_tui95333/Project4WS/Account/CreateAccount"),
+                RequestUri = new Uri($"http://localhost:5283/Account/CreateAccount"),
                 Headers =
                 {
                     { "Accept", "application/json" }
@@ -54,7 +56,6 @@ namespace ProjectFive.AppFunctions
             };
 
             var response = client.SendAsync(request).Result;
-            Console.WriteLine(response.Content.ReadAsStringAsync().Result);
 
             if(response.IsSuccessStatusCode)
             {
@@ -64,6 +65,99 @@ namespace ProjectFive.AppFunctions
             {
                 return false;
             }
+        }
+
+        public static string GetAccountUserName(string email)
+        {
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($"http://localhost:5283/Account/GetUsername?email={email}"),
+                Headers =
+                {
+                    { "Accept", "application/json" }
+                }
+            };
+
+            var response = client.SendAsync(request).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var readData = response.Content.ReadAsStringAsync().Result;
+                string s = JsonConvert.DeserializeObject<string>(readData);
+                return s;
+            }
+            return null;
+        }
+
+        public static bool CreateCodeEntry(int code, string email)
+        {
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($"http://localhost:5283/Account/CreateCode?code={code}&email={email}"),
+                Headers =
+                {
+                    { "Accept", "application/json" }
+                }
+            };
+            var response = client.SendAsync(request).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool VerifyCode(int code, string email)
+        {
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($"http://localhost:5283/Account/VerifyCode?code={code}&email={email}"),
+                Headers =
+                {
+                    { "Accept", "application/json" }
+                }
+            };
+            var response = client.SendAsync(request).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static AccountModel ForgotAccount(string newPassword, string email)
+        {
+
+            var account = new AccountModel();
+
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($"http://localhost:5283/Account/ForgotAccount?email={email}&newPassword={newPassword}"),
+                Headers =
+                {
+                    { "Accept", "application/json" }
+                }
+            };
+
+            var response = client.SendAsync(request).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var readData = response.Content.ReadAsStringAsync().Result;
+                account = JsonConvert.DeserializeObject<AccountModel>(readData);
+                return account;
+            }
+            return null;
         }
     }
 }

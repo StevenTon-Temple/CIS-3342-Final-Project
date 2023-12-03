@@ -31,3 +31,8 @@ C:\Users\Hunter\Desktop\3342\ProjectFive\ProjectFive\obj\Debug\net7.0\ProjectFiv
 C:\Users\Hunter\Desktop\3342\ProjectFive\ProjectFive\obj\Debug\net7.0\ref\ProjectFive.dll
 C:\Users\Hunter\Desktop\3342\ProjectFive\ProjectFive\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\Users\Hunter\Desktop\3342\ProjectFive\ProjectFive\obj\Debug\net7.0\ProjectFive.csproj.CopyComplete
+C:\Users\Hunter\Desktop\3342\ProjectFive\ProjectFive\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
+C:\Users\Hunter\Desktop\3342\ProjectFive\ProjectFive\bin\Debug\net7.0\MailKit.dll
+C:\Users\Hunter\Desktop\3342\ProjectFive\ProjectFive\bin\Debug\net7.0\MimeKit.dll
+C:\Users\Hunter\Desktop\3342\ProjectFive\ProjectFive\bin\Debug\net7.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\Hunter\Desktop\3342\ProjectFive\ProjectFive\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll

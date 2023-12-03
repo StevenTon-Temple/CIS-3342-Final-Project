@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DNlzSDlSlSxUMCVFSu+2J/IkVt/En/CN+GV4a076fm4=",
+  "Hash": "6x+TYCZsr8UHo9wocK4F+Ta76fSYnNXnTQZQHE07z0M=",
   "Source": "ProjectFive",
   "BasePath": "_content/ProjectFive",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\register.css"
+    },
+    {
+      "Identity": "C:\\Users\\Hunter\\Desktop\\3342\\ProjectFive\\ProjectFive\\wwwroot\\css\\restaurant.css",
+      "SourceId": "ProjectFive",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hunter\\Desktop\\3342\\ProjectFive\\ProjectFive\\wwwroot\\",
+      "BasePath": "_content/ProjectFive",
+      "RelativePath": "css/restaurant.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\restaurant.css"
     },
     {
       "Identity": "C:\\Users\\Hunter\\Desktop\\3342\\ProjectFive\\ProjectFive\\wwwroot\\css\\site.css",
@@ -1137,6 +1154,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\Hunter\\Desktop\\3342\\ProjectFive\\ProjectFive\\wwwroot\\Templates\\EmailTemplate\\ForgotEmail.html",
+      "SourceId": "ProjectFive",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hunter\\Desktop\\3342\\ProjectFive\\ProjectFive\\wwwroot\\",
+      "BasePath": "_content/ProjectFive",
+      "RelativePath": "Templates/EmailTemplate/ForgotEmail.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Templates\\EmailTemplate\\ForgotEmail.html"
     }
   ]
 }

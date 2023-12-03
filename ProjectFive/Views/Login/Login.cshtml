@@ -23,7 +23,8 @@
             </div>
 
             <div class="remember-forgot">
-                <label><input type="checkbox" /> Remember Me</label>
+                <label><input type="checkbox" value="true" name="remember" /> Remember Me</label>
+                <label><input type="hidden" value="false" name="remember" /></label>
                 <a asp-controller="Login" asp-action="Forgot">Forgot Password?</a>
             </div>
 
