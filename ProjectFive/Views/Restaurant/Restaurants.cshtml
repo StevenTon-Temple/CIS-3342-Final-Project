@@ -48,7 +48,7 @@
     <br/>
     <br/>
     <div class="wrapper">
-        <form method="post">
+        <form method="post" id="restaurants">
             <h1 style="color:#fff;">All Restaurants</h1>
             <div class="rtable">
                 <table class="table table-dark table-striped table-bordered table-sm">
@@ -80,11 +80,15 @@
                 </table>
             </div>
             <div class="row">
-                <button type="button" class="btn btn-primary">More Details</button>
+                  <button type="button" id="MoreDetails" class="btn btn-primary">More Details</button>
             </div>
             <br />
             <div class="row">
-                <button type="button" class="btn btn-primary">Make A Reservation</button>
+                <button type="button" id="Reserve" class="btn btn-primary">Make A Reservation</button>
+            </div>
+            <br />
+            <div class="row">
+                <a asp-action="Create" asp-controller="Restaurant" class="action_btn" style="text-align:center; font-size:17px;">Create Restaurant</a>
             </div>
         </form>
     </div>
@@ -103,5 +107,15 @@
                 ? 'fa-solid fa-xmark'
                 : 'fa-solid fa-bars'
         }
+
+        document.getElementById("MoreDetails").addEventListener("click", function() {
+            document.getElementById("restaurants").action = "/Restaurant/MoreDetails";
+            document.getElementById("restaurants").submit();
+        });
+
+        document.getElementById("Reserve").addEventListener("click", function() {
+            document.getElementById("restaurants").action = "/Reservation/Create";
+            document.getElementById("restaurants").submit();
+        });
     </script>
 </body>

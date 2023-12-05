@@ -3,8 +3,17 @@ using System.Net;
 
 namespace ProjectFive.AppFunctions
 {
-    public static class CookieHandler
+    public class CookieHandler
     {
+
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public CookieHandler(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
+
+
         public static Cookie CreateCookie(AccountModel account, int days)
         {
             string key = "UserCookie";
@@ -16,10 +25,10 @@ namespace ProjectFive.AppFunctions
             return cookie;
         }
 
-        public static string ReadCookie(string InfoNeeded, Cookie cookie)
+        public string ReadCookie(string InfoNeeded, string value)
         {
 
-            string[] info = cookie.Value.Split('|');
+            string[] info = value.Split('|');
 
             switch(InfoNeeded)
             {

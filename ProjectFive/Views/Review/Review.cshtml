@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ProjectFive.Models.ReviewModel>
+
+@{
+    ViewData["Title"] = "Review";
+}
+<head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+@*     <link href="/css/Review.css" rel="stylesheet">
+ *@
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="#">DishDetective</a></div>
+            <ul class="links">
+                <li><a href="home">Home</a></li>
+                <li><a href="restaurant">Restaurants</a></li>
+                <li><a href="reservation">Reservations</a></li>
+                <li><a href="review">Reviews</a></li>
+            </ul>
+            <a href="#" class="action_btn">Login</a>
+            <div class="toggle_btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+
+        <div class="dropdown_menu">
+            <li><a href="home">Home</a></li>
+            <li><a href="restaurant">Restaurants</a></li>
+            <li><a href="reservation">Reservations</a></li>
+            <li><a href="review">Reviews</a></li>
+            <li><a href="#" class="action_btn">Login</a></li>
+        </div>
+    </header>
+    <h1>All Reviews</h1>
+     <div class="wrapper">
+        <form method="post">
+            <h1 style="color:#fff;">All Reviews</h1>
+            <div class="rtable">
+                <table class="table table-dark table-striped table-bordered table-sm">
+                    <thead class="table-light">
+                        <tr>
+                            <th></th>
+                           <th>Resturant ID</th>
+                            <th>Price Rating</th>
+                            <th>Service Rating</th>
+                            <th>Atmosphere Rating</th>
+                            <th>Food Rating</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var d in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <input type="radio" name="selectedReview" value="@d.ID" />
+                                </td>
+                               
+                                <td>@d.ResturantID</td>
+                                <td>@d.PriceRating</td>
+                                <td>@d.ServiceRating</td>
+                                <td>@d.AtmosphereRating</td>
+                                <td>@d.FoodRating</td>
+                                <td>@d.Description</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            
+            
+            </form>
+            <form asp-action="Edit" asp-controller="Review" method="post">
+        <div class="row">
+            <button type="submit" class="btn btn-primary">Edit Reviews</button>
+            
+        </div>
+        </form>
+        <br />
+        <form asp-action="Add" asp-controller="Review" method="post">
+            <div class="row">
+            <button type="submit" class="btn btn-primary">Add Reviews</button>
+            </div>
+        </form>
+    </div>
+</body>

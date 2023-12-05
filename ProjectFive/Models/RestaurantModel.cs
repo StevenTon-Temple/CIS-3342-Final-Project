@@ -10,4 +10,15 @@
         public double Rating { get; set; }
         public string Category { get; set; }
     }
+
+    public class RestaurantAPIModel
+    {
+        public int id { get; set; }
+        public int representative_id { get; set; }
+        public string image { get; set; }
+        public string name { get; set; }
+        public string description { get; set; }
+        public double rating { get; set; }
+        public string category { get; set; }
+    }
 }

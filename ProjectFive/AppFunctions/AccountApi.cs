@@ -36,7 +36,6 @@ namespace ProjectFive.AppFunctions
         public static bool CreateAccount(AccountApiModel account)
         {
             var content = JsonConvert.SerializeObject(account, Formatting.Indented);
-            Console.WriteLine(content);
 
             var request = new HttpRequestMessage
             {

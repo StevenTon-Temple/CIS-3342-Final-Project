@@ -51,7 +51,7 @@ namespace ProjectFive.Controllers
                 {
                     CreateCookie(model, 7);
                 }
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Restaurants", "Restaurant");
             }
             else
             {

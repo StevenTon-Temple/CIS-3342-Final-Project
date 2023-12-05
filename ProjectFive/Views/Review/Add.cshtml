@@ -1,0 +1,86 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+   
+}
+<head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    @*     <link href="/css/Review.css" rel="stylesheet">
+    *@
+</head>
+ <body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="#">DishDetective</a></div>
+            <ul class="links">
+                <li><a href="home">Home</a></li>
+                <li><a href="restaurant">Restaurants</a></li>
+                <li><a href="reservation">Reservations</a></li>
+                <li><a href="review">Reviews</a></li>
+            </ul>
+            <a href="#" class="action_btn">Login</a>
+            <div class="toggle_btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+
+        <div class="dropdown_menu">
+            <li><a href="home">Home</a></li>
+            <li><a href="restaurant">Restaurants</a></li>
+            <li><a href="reservation">Reservations</a></li>
+            <li><a href="review">Reviews</a></li>
+            <li><a href="#" class="action_btn">Login</a></li>
+        </div>
+        </header>
+
+    <h1>Add Review</h1>
+    <div>
+        <label>Resturant Name</label>
+        <input type="text" name="name" />
+        
+        <br />
+        <label>Price Rating</label>
+        <select name="price">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <br />
+        <label>Service Rating</label>
+        <select name="service">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <br />
+        <label >Atmosphere Rating</label>
+        <select name="atmo">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <br />
+        <label>Food Rating</label>
+        <select name="food">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <br />
+        <label>Description</label>
+        <input type="text" />
+
+        <div class="row">
+            <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+    </div>
+        </body>
