@@ -23,6 +23,48 @@ namespace ProjectFive.Controllers
             return View(model);
         }
 
+        public IActionResult Representative()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult HandleAction(IFormCollection values)
+        {
+            int id = int.Parse(values["selectedReservation"]);
+            string action = values["actionType"];
+
+            if(id == null)
+            {
+                return RedirectToAction("Representative", "Reservation");
+            }
+            
+            if(action == "delete")
+            {
+                bool success = ReservationApi.DeleteReservation(id);
+                return RedirectToAction("Representative", "Reservation");
+            }
+
+            else if(action == "edit")
+            {
+                List<ReservationModel> reservations = ReservationApi.ListReservations();
+                ReservationModel selected = new ReservationModel();
+
+                foreach(ReservationModel r in reservations)
+                {
+                    if(r.ID == id)
+                    {
+                        selected = r;
+                        break;
+                    }
+                }
+
+                return View("Edit", selected);
+            }
+
+            return RedirectToAction("Representative", "Reservation");
+        }
+
         [HttpPost]
         public IActionResult CreateReservation(IFormCollection values)
         {
@@ -52,6 +94,37 @@ namespace ProjectFive.Controllers
             else
             {
                 return RedirectToAction("Restaurants", "Restaurant");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult UpdateReservation(IFormCollection values)
+        {
+            int id = int.Parse(values["id"]);
+            int restaurantid = int.Parse(values["rid"]);
+            string name = values["name"];
+            string phone = values["phone"];
+            string date = values["date"];
+            string time = values["time"];
+
+            ReservationAPIModel model = new ReservationAPIModel
+            {
+                id = id,
+                restuarant_id = restaurantid,
+                name = name,
+                phone = phone,
+                datetime = $"{date}|{time}"
+            };
+
+            bool success = ReservationApi.UpdateReservation(model);
+
+            if (success)
+            {
+                return RedirectToAction("Representative", "Reservation");
+            }
+            else
+            {
+                return RedirectToAction("Representative", "Reservation");
             }
         }
     }

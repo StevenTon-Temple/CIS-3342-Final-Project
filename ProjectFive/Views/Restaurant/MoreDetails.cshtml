@@ -35,16 +35,43 @@
 </head>
 
 <body>
+    @{
+        Context.Request.Cookies.TryGetValue("UserCookie", out string value);
+        string role = "";
+        if (value != null)
+        {
+            role = Handler.ReadCookie("Role", value);
+        }
+    }
     <header>
         <div class="navbar">
             <div class="logo"><a href="#">DishDetective</a></div>
             <ul class="links">
-                <li><a href="home">Home</a></li>
-                <li><a href="restaurant">Restaurants</a></li>
-                <li><a href="reservation">Reservations</a></li>
-                <li><a href="review">Reviews</a></li>
+                <li><a asp-action="Restaurants" asp-controller="Restaurant">Home</a></li>
+                <li><a asp-action="Restaurants" asp-controller="Restaurant">Restaurants</a></li>
+                @{
+                    if (role == "Representative")
+                    {
+                        <li><a asp-action="Representative" asp-controller="Reservation">Reservations</a></li>
+                        <li><a asp-action="Rep" asp-controller="Review">Reviews</a></li>
+                    }
+                    else if (role == "Reviewer")
+                    {
+                        <li><a asp-action="Review" asp-controller="Review">Reviews</a></li>
+                    }
+                }
+
             </ul>
-            <a href="#" class="action_btn">Login</a>
+            @{
+                if (value != null)
+                {
+                    <a asp-action="Logout" asp-controller="Login" class="action_btn">Logout</a>
+                }
+                else
+                {
+                    <a asp-action="Login" asp-controller="Login" class="action_btn">Login</a>
+                }
+            }
             <div class="toggle_btn">
                 <i class="fa-solid fa-bars"></i>
             </div>
@@ -58,13 +85,10 @@
             <li><a href="#" class="action_btn">Login</a></li>
         </div>
     </header>
-    <br/>
-    <br/>
+    <br />
+    <br />
     <div class="wrapper">
         <h1>@Model.Name</h1>
-        @{
-            Console.WriteLine(Model.Image);
-        }
         <div class="text-center">
             <img src="@Model.Image" height="250" width="300" />
         </div>
@@ -72,39 +96,96 @@
             <h3>About</h3>
             <p>@Model.Description</p>
         </div>
+        <br />
+        <br />
+
+
+        @{
+            List<ReviewModel> reviews = ReviewApi.ListAllReviews();
+            List<ReviewModel> toDisplay = new List<ReviewModel>();
+            foreach(ReviewModel r in reviews)
+            {
+                if(r.ResturantID == Model.ID)
+                {
+                    toDisplay.Add(r);
+                }
+            }
+        }
+
+        <div class="rtable">
+            <table class="table table-dark table-striped table-bordered table-sm">
+                <thead class="table-light">
+                    <tr>
+                        <td>Description</td>
+                        <td>Food Rating</td>
+                        <td>Service Rating</td>
+                        <td>Atmosphere Rating</td>
+                        <td>Price Rating</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var rev in toDisplay)
+                    {
+                        <tr>
+                            <td>@rev.Description</td>
+                            <td>@rev.FoodRating</td>
+                            <td>@rev.ServiceRating</td>
+                            <td>@rev.AtmosphereRating</td>
+                            <td>@rev.PriceRating</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
     </div>
     <br /> <br/>
     <div class="wrapper">
-        
-        <form id="AllUsers">
-            <input type="hidden" name="rid" value="@Model.ID" />
-            <button type="button" id="Reserve" class="btn btn-primary">Reserve a Table!</button>
-            <button type="button" id="Review" class="btn btn-primary">Write a Review!</button>    
+
+        <form id="menuSearch" asp-action="Menu" asp-controller="Menu" method="post">
+            <input type="hidden" name="menuSearch" value="@Model.Name" />
+            <button type="submit" id="Menu" class="btn btn-primary">Search for the Menu!</button>
         </form>
+
+        <br /> <br />
+       
+        @{
+            if(role == "Reviewer")
+            {
+                <form id="add" asp-action="Add" asp-controller="Review" method="post">
+                    <input type="hidden" name="selectedRestaurant" value="@Model.ID" />
+
+                    <button type="submit" id="Review" class="btn btn-primary">Write a Review!</button>
+                </form>
+            }
+        }
+      
+       
         <br /> <br/>
 
         @{
-            Context.Request.Cookies.TryGetValue("UserCookie", out string value);
             if(value != null)
             {
                 int id = int.Parse(Handler.ReadCookie("ID", value));
-                string role = Handler.ReadCookie("Role", value);
 
                 if(id == Model.Representative_ID)
                 {
                     <div class="row">
-                        <form method="post" asp-action="EditRestaurant">
+                        <div class="col-sm">
+                            <form method="post" asp-action="EditRestaurant">
                             <input type="hidden" name="rid" value="@Model.ID" />
                             <input class="btn btn-primary" type="submit" value="Edit Restaurant" />
-                        </form>
-                    </div>
-
-                    <br/><br/>
-                    <div class="row">
-                        <form method="post" asp-action="DeleteRestaurant">
-                            <input type="hidden" name="rid" value="@Model.ID" />
-                            <input class="btn btn-primary" type="submit" value="Delete Restaurant" />
-                        </form>
+                            </form>
+                        </div>
+                        <div class="col-sm">
+                            <form method="post" asp-action="DeleteRestaurant">
+                                <input type="hidden" name="rid" value="@Model.ID" />
+                                <input class="btn btn-primary" type="submit" value="Delete Restaurant" />
+                            </form>
+                        </div>
+                    
+                        
                     </div>
                     
                     <br /> <br />
@@ -112,15 +193,19 @@
 
                 if((Model.Representative_ID == 0 || Model.Representative_ID == null) && role == "Representative")
                 {
-                    <form method="post" asp-action="UpdateRepresentative">
-                        <input type="hidden" name="rid" value="@Model.ID" />
-                        <input type="hidden" name="repid" value="@id" />
-                        <input class="btn btn-primary" type="submit" value="Claim Restaurant" />
-                    </form>
+                    <div class="row">
+                        <form method="post" asp-action="UpdateRepresentative">
+                            <input type="hidden" name="rid" value="@Model.ID" />
+                            <input type="hidden" name="repid" value="@id" />
+                            <input class="btn btn-primary" type="submit" value="Claim Restaurant" />
+                        </form>
+                    </div>
                     <br /> <br />
                 }
             }
+
+          
         }      
-    </>
+    </div>
 
 </body>

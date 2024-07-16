@@ -15,7 +15,7 @@ namespace ProjectFive.AppFunctions
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"http://localhost:5283/Restaurant/ListRestaurants"),
+                RequestUri = new Uri($"http://cis-iis2.temple.edu/Fall2023/CIS3342_tui95333/TermProjectAPI/Restaurant/ListRestaurants"),
                 Headers =
                 {
                     { "Accept", "application/json" }
@@ -39,7 +39,7 @@ namespace ProjectFive.AppFunctions
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Post,
-                RequestUri = new Uri($"http://localhost:5283/Restaurant/UpdateRestaurant"),
+                RequestUri = new Uri($"http://cis-iis2.temple.edu/Fall2023/CIS3342_tui95333/TermProjectAPI/Restaurant/UpdateRestaurant"),
                 Headers =
                 {
                     { "Accept", "application/json" }
@@ -70,7 +70,7 @@ namespace ProjectFive.AppFunctions
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"http://localhost:5283/Restaurant/DeleteRestaurant?id={id}"),
+                RequestUri = new Uri($"http://cis-iis2.temple.edu/Fall2023/CIS3342_tui95333/TermProjectAPI/Restaurant/DeleteRestaurant?id={id}"),
                 Headers =
                 {
                     { "Accept", "application/json" }
@@ -91,7 +91,7 @@ namespace ProjectFive.AppFunctions
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Post,
-                RequestUri = new Uri($"http://localhost:5283/Restaurant/CreateRestaurant"),
+                RequestUri = new Uri($"http://cis-iis2.temple.edu/Fall2023/CIS3342_tui95333/TermProjectAPI/Restaurant/CreateRestaurant"),
                 Headers =
                 {
                     { "Accept", "application/json" }

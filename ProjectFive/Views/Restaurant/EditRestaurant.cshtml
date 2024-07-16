@@ -1,5 +1,6 @@
-﻿@model ProjectFive.Models.RestaurantModel
-
+﻿@using ProjectFive.AppFunctions;
+@model ProjectFive.Models.RestaurantModel
+@inject CookieHandler Handler
 @{
     ViewData["Title"] = $"Edit - {Model.Name}";
 }
@@ -121,16 +122,43 @@
 
 </head>
 <body>
+    @{
+        Context.Request.Cookies.TryGetValue("UserCookie", out string value);
+        string role = "";
+        if (value != null)
+        {
+            role = Handler.ReadCookie("Role", value);
+        }
+    }
     <header>
         <div class="navbar">
             <div class="logo"><a href="#">DishDetective</a></div>
             <ul class="links">
-                <li><a href="home">Home</a></li>
-                <li><a href="restaurant">Restaurants</a></li>
-                <li><a href="reservation">Reservations</a></li>
-                <li><a href="review">Reviews</a></li>
+                <li><a asp-action="Restaurants" asp-controller="Restaurant">Home</a></li>
+                <li><a asp-action="Restaurants" asp-controller="Restaurant">Restaurants</a></li>
+                @{
+                    if (role == "Representative")
+                    {
+                        <li><a asp-action="Representative" asp-controller="Reservation">Reservations</a></li>
+                        <li><a asp-action="Rep" asp-controller="Review">Reviews</a></li>
+                    }
+                    else if (role == "Reviewer")
+                    {
+                        <li><a asp-action="Review" asp-controller="Review">Reviews</a></li>
+                    }
+                }
+
             </ul>
-            <a href="#" class="action_btn">Login</a>
+            @{
+                if (value != null)
+                {
+                    <a asp-action="Logout" asp-controller="Login" class="action_btn">Logout</a>
+                }
+                else
+                {
+                    <a asp-action="Login" asp-controller="Login" class="action_btn">Login</a>
+                }
+            }
             <div class="toggle_btn">
                 <i class="fa-solid fa-bars"></i>
             </div>
@@ -144,8 +172,8 @@
             <li><a href="#" class="action_btn">Login</a></li>
         </div>
     </header>
-    <br/>
-    <br/>
+    <br />
+    <br />
 
     <div class="wrapper">
          <form method="post" asp-action="UpdateRestaurant">

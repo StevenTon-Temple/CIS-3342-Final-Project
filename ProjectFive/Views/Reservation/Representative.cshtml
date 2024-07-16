@@ -1,0 +1,270 @@
+﻿@using ProjectFive.AppFunctions;
+@model ProjectFive.Models.RestaurantModel
+@inject CookieHandler Handler
+@{
+    ViewData["Title"] = "Review Overview";
+    List<ReservationModel> reservations = ReservationApi.ListReservations();
+    List<RestaurantModel> restaurants = RestaurantApi.ListRestaurants();
+    List<RestaurantModel> toDisplay = new List<RestaurantModel>();
+
+    Context.Request.Cookies.TryGetValue("UserCookie", out string value);
+    int id = int.Parse(Handler.ReadCookie("ID", value));
+
+    foreach(RestaurantModel r in restaurants)
+    {
+        if(id == r.Representative_ID)
+        {
+            toDisplay.Add(r);
+        }
+    }
+}
+
+<head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/restaurant.css" />
+
+    <style>
+
+        table {
+            text-align: center;
+        }
+
+        th, td {
+            justify-content: center;
+        }
+
+        .wrapper {
+            width: 75%;
+            background: transparent;
+            border: 2px solid rgba(255,255,255, .2);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+            color: #fff;
+            border-radius: 10px;
+            padding: 30px 40px;
+            margin: auto;
+        }
+
+            .wrapper h1 {
+                font-size: 36px;
+                text-align: center;
+            }
+
+            .wrapper .input-box {
+                position: relative;
+                width: 100%;
+                height: 50px;
+                margin: 30px 0;
+            }
+
+        .input-box input {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            border: 2px solid rgba(255,255,255, .2);
+            border-radius: 40px;
+            font-size: 16px;
+            color: #fff;
+            padding: 20px 45px 20px 20px;
+        }
+
+            .input-box input::placeholder {
+                color: #fff;
+            }
+
+        .input-box i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+        }
+
+        .wrapper .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14.5px;
+            margin: -15px 0px 15px;
+        }
+
+        .remember-forgot label input {
+            accent-color: #fff;
+            margin-right: 3px;
+        }
+
+        .remember-forgot a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+            .remember-forgot a:hover {
+                text-decoration: underline;
+            }
+
+        .wrapper .btn {
+            width: 100%;
+            height: 45px;
+            background: #fff;
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,.1);
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .wrapper .register-link {
+            font-size: 14.5px;
+            text-align: center;
+            margin: 20px 0 15px;
+        }
+
+        .register-link p a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+            .register-link p a:hover {
+                text-decoration: underline;
+            }
+    </style>
+
+</head>
+
+<body>
+    @{
+        string role = "";
+        if (value != null)
+        {
+            role = Handler.ReadCookie("Role", value);
+        }
+    }
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="#">DishDetective</a></div>
+            <ul class="links">
+                <li><a asp-action="Restaurants" asp-controller="Restaurant">Home</a></li>
+                <li><a asp-action="Restaurants" asp-controller="Restaurant">Restaurants</a></li>
+                @{
+                    if (role == "Representative")
+                    {
+                        <li><a asp-action="Representative" asp-controller="Reservation">Reservations</a></li>
+                        <li><a asp-action="Rep" asp-controller="Review">Reviews</a></li>
+                    }
+                    else if (role == "Reviewer")
+                    {
+                        <li><a asp-action="Review" asp-controller="Review">Reviews</a></li>
+                    }
+                }
+
+            </ul>
+            @{
+                if (value != null)
+                {
+                    <a asp-action="Logout" asp-controller="Login" class="action_btn">Logout</a>
+                }
+                else
+                {
+                    <a asp-action="Login" asp-controller="Login" class="action_btn">Login</a>
+                }
+            }
+            <div class="toggle_btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+
+        <div class="dropdown_menu">
+            <li><a href="home">Home</a></li>
+            <li><a href="restaurant">Restaurants</a></li>
+            <li><a href="reservation">Reservations</a></li>
+            <li><a href="review">Reviews</a></li>
+            <li><a href="#" class="action_btn">Login</a></li>
+        </div>
+    </header>
+    <br />
+    <br />
+    @{
+        foreach(RestaurantModel r in toDisplay)
+        {
+            List<ReservationModel> thisReservation = new List<ReservationModel>();
+
+            foreach(ReservationModel res in reservations)
+            {
+                if(res.Restuarant_ID == r.ID)
+                {
+                    thisReservation.Add(res);
+                }
+            }
+
+
+            <div class="wrapper">
+                <form method="post" id="reservations" action="@Url.Action("HandleAction", "Reservation")">
+                    <h1 style="color:#fff;">Reservations for @r.Name</h1>
+                    <div class="rtable">
+                        <table class="table table-dark table-striped table-bordered table-sm">
+                            <thead class="table-light">
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var d in thisReservation)
+                                {
+                                    <tr>
+                                        <td>
+                                            <input type="radio" name="selectedReservation" value="@d.ID" />
+                                        </td>
+                                        <td>@d.Name</td>
+                                        <td>@d.Phone</td>
+                                        <td>@d.DateTime.Split('|')[0]</td>
+                                        <td>@d.DateTime.Split('|')[1]</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="btn btn-primary" name="actionType" value="edit">Edit Reservation</button>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <button type="submit" class="btn btn-primary" name="actionType" value="delete" onclick="return confirm('Are you sure you want to delete this reservation?')">Delete Reservation</button>
+                    </div>
+                </form>
+            </div>
+            <br />
+            <br />
+        }
+    }
+
+    <script>
+        const toggleBtn = document.querySelector('.toggle_btn')
+        const toggleBtnIcon = document.querySelector('.toggle_btn i')
+        const dropDownMenu = document.querySelector('.dropdown_menu')
+
+        toggleBtn.onclick = function () {
+            dropDownMenu.classList.toggle('open')
+            const isOpen = dropDownMenu.classList.contains('open')
+
+            toggleBtnIcon.classList = isOpen
+                ? 'fa-solid fa-xmark'
+                : 'fa-solid fa-bars'
+        }
+
+        document.getElementById("Edit").addEventListener("click", function() {
+            document.getElementById("reservations").action = "/Reservation/Edit";
+            document.getElementById("reservations").submit();
+        });
+
+    </script>
+</body>
