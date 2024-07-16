@@ -4,6 +4,8 @@
     {
         public int ID { get; set; }
         public int ResturantID { get; set; }
+        public int ReviwerID { get; set; }
+
         public int FoodRating { get; set; }
         public int ServiceRating { get; set; }
         public int AtmosphereRating { get; set; }

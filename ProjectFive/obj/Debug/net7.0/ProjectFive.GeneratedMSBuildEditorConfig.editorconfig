@@ -9,81 +9,111 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ProjectFive
 build_property.RootNamespace = ProjectFive
-build_property.ProjectDir = D:\Projects\ProjectFive\ProjectFive\
+build_property.ProjectDir = C:\Users\steve\Desktop\P5 V2\ProjectFive\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Projects\ProjectFive\ProjectFive
+build_property.MSBuildProjectDirectory = C:\Users\steve\Desktop\P5 V2\ProjectFive
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/Home/Index.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/Home/Privacy.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/Login/Forgot.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Login/Forgot.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cRm9yZ290LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/Login/Login.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Login/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/Login/Register.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Login/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/Reservation/Create.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Menu/Menu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudVxNZW51LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Reservation/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/Restaurant/Create.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Reservation/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Reservation/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Reservation/Representative.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cUmVwcmVzZW50YXRpdmUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Restaurant/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdGF1cmFudFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/Restaurant/EditRestaurant.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Restaurant/EditRestaurant.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdGF1cmFudFxFZGl0UmVzdGF1cmFudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/Restaurant/MoreDetails.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Restaurant/MoreDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdGF1cmFudFxNb3JlRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/Restaurant/Restaurants.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Restaurant/Restaurants.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdGF1cmFudFxSZXN0YXVyYW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/Review/Add.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Review/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV2aWV3XEFkZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/Review/Edit.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Review/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV2aWV3XEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/Review/Review.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Review/Rep.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV2aWV3XFJlcC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Review/Review.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV2aWV3XFJldmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/Shared/Error.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Shared/_DisplayReviewPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9EaXNwbGF5UmV2aWV3UGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/_ViewImports.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Statistics/Statistics.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RhdGlzdGljc1xTdGF0aXN0aWNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/_ViewStart.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ProjectFive/ProjectFive/Views/Shared/_Layout.cshtml]
+[C:/Users/steve/Desktop/P5 V2/ProjectFive/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-x6n7wn3onm

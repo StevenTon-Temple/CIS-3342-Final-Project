@@ -13,5 +13,15 @@ namespace ProjectFive.AppFunctions
 
             return null;
         }
+
+        public static ReviewModel FindUserReviewByIDEdit(int id, List<ReviewModel> reviews)
+        {
+            foreach (ReviewModel r in reviews)
+            {
+                if (r.ID == id) return r;
+            }
+
+            return null;
+        }
     }
 }

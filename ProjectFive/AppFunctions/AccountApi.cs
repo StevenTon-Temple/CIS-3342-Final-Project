@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Cors.Infrastructure;
+using Newtonsoft.Json;
 using ProjectFive.Models;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
+using System.Text.Json;
 using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace ProjectFive.AppFunctions
@@ -9,14 +11,21 @@ namespace ProjectFive.AppFunctions
     public class AccountApi
     {
         private static HttpClient client = new HttpClient();
-        public static AccountModel VerifyAccount(string username, string password)
+        public static AccountModel VerifyAccount(string cipher)
         {
+
+            string decoded = EncryptionCust.DecodeAndDecrypt(cipher);
+            
+            string username = decoded.Split(':')[0];
+            string password = decoded.Split(':')[1];
+
             var account = new AccountModel();
 
+            Console.WriteLine("sending");
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"http://localhost:5283/Account/ListAccount?username={username}&password={password}"),
+                RequestUri = new Uri($"http://cis-iis2.temple.edu/Fall2023/CIS3342_tui95333/TermProjectAPI/Account/ListAccount?username={username}&password={password}"),
                 Headers =
                 {
                     { "Accept", "application/json" }
@@ -24,6 +33,7 @@ namespace ProjectFive.AppFunctions
             };
 
             var response = client.SendAsync(request).Result;
+
             if(response.IsSuccessStatusCode)
             {
                 var readData = response.Content.ReadAsStringAsync().Result;
@@ -35,12 +45,19 @@ namespace ProjectFive.AppFunctions
 
         public static bool CreateAccount(AccountApiModel account)
         {
-            var content = JsonConvert.SerializeObject(account, Formatting.Indented);
+            //var content = JsonConvert.SerializeObject(account, Formatting.Indented);
+
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+
+            var content = System.Text.Json.JsonSerializer.Serialize(account, options);
 
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Post,
-                RequestUri = new Uri($"http://localhost:5283/Account/CreateAccount"),
+                RequestUri = new Uri($"http://cis-iis2.temple.edu/Fall2023/CIS3342_tui95333/TermProjectAPI/Account/CreateAccount"),
                 Headers =
                 {
                     { "Accept", "application/json" }
@@ -71,7 +88,7 @@ namespace ProjectFive.AppFunctions
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"http://localhost:5283/Account/GetUsername?email={email}"),
+                RequestUri = new Uri($"http://cis-iis2.temple.edu/Fall2023/CIS3342_tui95333/TermProjectAPI/Account/GetUsername?email={email}"),
                 Headers =
                 {
                     { "Accept", "application/json" }
@@ -93,7 +110,7 @@ namespace ProjectFive.AppFunctions
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"http://localhost:5283/Account/CreateCode?code={code}&email={email}"),
+                RequestUri = new Uri($"http://cis-iis2.temple.edu/Fall2023/CIS3342_tui95333/TermProjectAPI/Account/CreateCode?code={code}&email={email}"),
                 Headers =
                 {
                     { "Accept", "application/json" }
@@ -116,7 +133,7 @@ namespace ProjectFive.AppFunctions
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"http://localhost:5283/Account/VerifyCode?code={code}&email={email}"),
+                RequestUri = new Uri($"http://cis-iis2.temple.edu/Fall2023/CIS3342_tui95333/TermProjectAPI/Account/VerifyCode?code={code}&email={email}"),
                 Headers =
                 {
                     { "Accept", "application/json" }
@@ -142,7 +159,7 @@ namespace ProjectFive.AppFunctions
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"http://localhost:5283/Account/ForgotAccount?email={email}&newPassword={newPassword}"),
+                RequestUri = new Uri($"http://cis-iis2.temple.edu/Fall2023/CIS3342_tui95333/TermProjectAPI/Account/ForgotAccount?email={email}&newPassword={newPassword}"),
                 Headers =
                 {
                     { "Accept", "application/json" }

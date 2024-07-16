@@ -2,6 +2,8 @@
 using ProjectFive.AppFunctions;
 using ProjectFive.Models;
 using System.Net;
+using System.Security.Cryptography;
+using System.Security.Principal;
 
 namespace ProjectFive.Controllers
 {
@@ -13,7 +15,7 @@ namespace ProjectFive.Controllers
 
             if(cookie != null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Restaurants", "Restaurant");
             }
             return View();
         }
@@ -28,6 +30,17 @@ namespace ProjectFive.Controllers
             return View();
         }
 
+        public IActionResult Logout()
+        {
+            string key = "UserCookie";
+            string value = $"";
+            var cookieOptions = new CookieOptions();
+            cookieOptions.Expires = DateTime.Now.AddDays(-1);
+            cookieOptions.Path = "/";
+            Response.Cookies.Append(key, value, cookieOptions);
+
+            return RedirectToAction("Restaurants", "Restaurant");
+        }
         [HttpPost]
         public IActionResult Login(IFormCollection values)
         {
@@ -37,9 +50,9 @@ namespace ProjectFive.Controllers
             string password = values["password"];
             string selected = values["remember"];
 
-            
+            string cipher = EncryptionCust.EncryptAndEncode($"{username}:{password}");
 
-            AccountModel model = AccountApi.VerifyAccount(username, password);
+            AccountModel model = AccountApi.VerifyAccount(cipher);
 
             if(model != null)
             {
@@ -89,11 +102,17 @@ namespace ProjectFive.Controllers
                 role_ID = roleId
             };
 
+
             bool success = AccountApi.CreateAccount(account);
+
+            string cipher = EncryptionCust.EncryptAndEncode($"{account.username}:{account.password}");
+
+            AccountModel model = AccountApi.VerifyAccount(cipher);
 
             if(success)
             {
-                return RedirectToAction("Index", "Home");
+                CreateCookieMinutes(model, 45);
+                return RedirectToAction("Restaurants", "Restaurant");
             }
             else
             {
@@ -144,25 +163,33 @@ namespace ProjectFive.Controllers
         {
             string key = "UserCookie";
             string value = $"{account.ID}|{account.Name}|{account.Username}|{account.Email}|{account.Role}";
+
+            string eval = EncryptionCust.EncryptAndEncode(value);
+
             var cookieOptions = new CookieOptions();
 
             cookieOptions.Expires = DateTime.Now.AddDays(days);
             cookieOptions.Path = "/";
 
-            Response.Cookies.Append(key, value, cookieOptions);
+            Response.Cookies.Append(key, eval, cookieOptions);
         }
 
         private void CreateCookieMinutes(AccountModel account, int minutes)
         {
             string key = "UserCookie";
             string value = $"{account.ID}|{account.Name}|{account.Username}|{account.Email}|{account.Role}";
+
+            string eval = EncryptionCust.EncryptAndEncode(value);
+
             var cookieOptions = new CookieOptions();
 
             cookieOptions.Expires = DateTime.Now.AddMinutes(minutes);
             cookieOptions.Path = "/";
 
-            Response.Cookies.Append(key, value, cookieOptions);
+            Response.Cookies.Append(key, eval, cookieOptions);
         }
+
+        
 
     }
 }

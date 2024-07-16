@@ -1,7 +1,16 @@
-﻿@model IEnumerable<ProjectFive.Models.RestaurantModel>
+﻿@using ProjectFive.AppFunctions;
+@model IEnumerable<ProjectFive.Models.RestaurantModel>
+@inject CookieHandler Handler
 
 @{
     ViewData["Title"] = "All Restaurants";
+    Context.Request.Cookies.TryGetValue("UserCookie", out string value);
+    string role = "";
+    if (value != null)
+    {
+        role = Handler.ReadCookie("Role", value);
+
+    }
 }
 
 <head>
@@ -22,16 +31,38 @@
 </head>
 
 <body>
+    @{
+        
+    }
     <header>
         <div class="navbar">
             <div class="logo"><a href="#">DishDetective</a></div>
             <ul class="links">
-                <li><a href="home">Home</a></li>
-                <li><a href="restaurant">Restaurants</a></li>
-                <li><a href="reservation">Reservations</a></li>
-                <li><a href="review">Reviews</a></li>
+                <li><a asp-action="Restaurants" asp-controller="Restaurant">Home</a></li>
+                <li><a asp-action="Restaurants" asp-controller="Restaurant">Restaurants</a></li>
+                @{
+                    if(role == "Representative")
+                    {
+                        <li><a asp-action="Representative" asp-controller="Reservation">Reservations</a></li>
+                        <li><a asp-action="Rep" asp-controller="Review">Reviews</a></li>
+                    }
+                    else if(role == "Reviewer")
+                    {
+                        <li><a asp-action="Review" asp-controller="Review">Reviews</a></li>
+                    }
+                }
+                
             </ul>
-            <a href="#" class="action_btn">Login</a>
+            @{
+                if(value != null)
+                {
+                    <a asp-action="Logout" asp-controller="Login" class="action_btn">Logout</a>
+                }
+                else
+                {
+                    <a asp-action="Login" asp-controller="Login" class="action_btn">Login</a>
+                }
+            }
             <div class="toggle_btn">
                 <i class="fa-solid fa-bars"></i>
             </div>
@@ -89,6 +120,10 @@
             <br />
             <div class="row">
                 <a asp-action="Create" asp-controller="Restaurant" class="action_btn" style="text-align:center; font-size:17px;">Create Restaurant</a>
+            </div>
+            <br/>
+            <div class="row">
+                <a asp-action="Statistics" asp-controller="Statistics" class="action_btn" style="text-align:center; font-size:17px;">See Statistics</a>
             </div>
         </form>
     </div>
